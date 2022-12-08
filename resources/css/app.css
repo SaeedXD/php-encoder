@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    transition: all 0.3s;
+}
+
+#app {
+    background: linear-gradient(20deg, #000c25, #003a66);
+    min-height: 100vh;
+}
+
+.box {
+    background: linear-gradient(to top, #00000055, #00000011);
+    backdrop-filter: blur(2px);
+}
+
+.custom-animate-pulse {
+    animation: custom-animate-pulse 0.4s infinite;
+}
+
+@keyframes custom-animate-pulse {
+    0%{
+        opacity: 1;
+    }
+    40%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
