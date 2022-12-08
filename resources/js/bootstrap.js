@@ -14,6 +14,11 @@ window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+
+
+window.rand = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
