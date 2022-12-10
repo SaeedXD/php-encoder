@@ -75,8 +75,11 @@
 
                     <div class="relative w-10/12 sm:w-8/12 lg:w-1/3">
                         <label for="views" class="w-full"><i class="fas fa-download"></i> Download:</label>
-                        <button ref="dl" class="w-full h-8 outline-none bg-blue-600/50 rounded px-2 active:scale-95" :class="{'bg-emerald-600/50': downloadstate === 1, 'bg-red-600/50': downloadstate === 2, 'bg-red-600/50': data.used === 1}" @click="download">
-                            {{ data.used === 0 ? 'Download' : 'Link Has Been Expired.' }}
+                        <button ref="dl" v-if="(data.used == 0)" class="w-full h-8 outline-none bg-blue-600/50 rounded px-2 active:scale-95" :class="{'bg-emerald-600/50': downloadstate === 1, 'bg-red-600/50': downloadstate === 2}" @click="download">
+                            Download
+                        </button>
+                        <button ref="dl" v-else class="w-full h-8 outline-none bg-red-600/50 rounded px-2">
+                            Link Has Been Expired.
                         </button>
                     </div>
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Classes;
 
 class Encoder
 {
@@ -30,13 +30,13 @@ class Encoder
     private function Encode($code = null)
     {
         $code = $code ?? $this->code;
-        $code = \str_replace("\n", "3411SaeedGolestani3411", $code);
-        \preg_match_all('/(.)/', $code, $ar);
+        $code = str_replace("\n", "3411SaeedGolestani3411", $code);
+        preg_match_all('/(.)/', $code, $ar);
         $s = '';
         $x = 1;
         $i = 1;
         $en = 0;
-        $len = \count($ar[0]);
+        $len = count($ar[0]);
         foreach ($ar[0] as $item) {
             $s .= (((ord($item) + $this->Key_A) * $this->Key_B) + $en);
             $en++;
@@ -57,7 +57,7 @@ class Encoder
         $T = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'q', 'Q', 'w', 'W', 'e', 'E', 'r', 'R', 't', 'T', 'y', 'Y', 'u', 'U', 'i', 'I', 'o', 'O', 'p', 'P', 'a', 'A', 's', 'S', 'd', 'D', 'f', 'F', 'g', 'G', 'h', 'H', 'j', 'J', 'k', 'K', 'l', 'L', 'z', 'Z', 'x', 'X', 'c', 'C', 'v', 'V', 'b', 'B', 'n', 'N',];
         $File = '';
         for ($i = 1; $i <= 7; $i++) {
-            $File .= $T[\rand(0, \count($T) - 1)];
+            $File .= $T[rand(0, count($T) - 1)];
         }
         $File = "FR-$File.STE";
         $code = $this->me . '
@@ -73,7 +73,7 @@ class Encoder
         {
             echo \'<body style="background:#131313;text-align:center;padding-top:45vh;font-family: monospace;"><text style="color:yellow;font-size:30px;">SG-Encoder : </text><text style="color:red;font-size:25px;"> [<text style="color:#0ff;">.STE</text>] file not found !</text></body\';exit;
         }        
-        @eval(\'?>\' . ' . $this->HS('dc_func', true) . '(' . $this->HS('dc_imported') . ', 0x' . \base_convert($this->Key_A, 10, 16) . ', 0x' . \base_convert($this->Key_B, 10, 16) . '));function ' . $this->HS('dc_func', true) . '(' . $this->HS('dc_func_str') . ', ' . $this->HS('dc_func_a') . ', ' . $this->HS('dc_func_b') . '){preg_match_all(\'/(\d+)/\', ' . $this->HS('dc_func_str') . ', ' . $this->HS('dc_func_ar') . ');' . $this->HS('dc_func_out') . ' = \'\';' . $this->HS('dc_c_loop') . ' = 0;foreach (' . $this->HS('dc_func_ar') . '[0] as ' . $this->HS('dc_func_item') . ') {' . $this->HS('dc_func_out') . ' .= chr((((' . $this->HS('dc_func_item') . ' - ' . $this->HS('dc_c_loop') . ') / ' . $this->HS('dc_func_b') . ') - ' . $this->HS('dc_func_a') . '));' . $this->HS('dc_c_loop') . '++;}return str_replace("3411SaeedGolestani3411", "\n", ' . $this->HS('dc_func_out') . ');}//MSGQOM-03-724-80-411';
+        @eval(\'?>\' . ' . $this->HS('dc_func', true) . '(' . $this->HS('dc_imported') . ', 0x' . base_convert($this->Key_A, 10, 16) . ', 0x' . base_convert($this->Key_B, 10, 16) . '));function ' . $this->HS('dc_func', true) . '(' . $this->HS('dc_func_str') . ', ' . $this->HS('dc_func_a') . ', ' . $this->HS('dc_func_b') . '){preg_match_all(\'/(\d+)/\', ' . $this->HS('dc_func_str') . ', ' . $this->HS('dc_func_ar') . ');' . $this->HS('dc_func_out') . ' = \'\';' . $this->HS('dc_c_loop') . ' = 0;foreach (' . $this->HS('dc_func_ar') . '[0] as ' . $this->HS('dc_func_item') . ') {' . $this->HS('dc_func_out') . ' .= chr((((' . $this->HS('dc_func_item') . ' - ' . $this->HS('dc_c_loop') . ') / ' . $this->HS('dc_func_b') . ') - ' . $this->HS('dc_func_a') . '));' . $this->HS('dc_c_loop') . '++;}return str_replace("3411SaeedGolestani3411", "\n", ' . $this->HS('dc_func_out') . ');}//MSGQOM-03-724-80-411';
 
         $this->Encoded_Name = $File;
         $this->code = $code;
@@ -130,35 +130,35 @@ class Encoder
     private function Step_1($code = null)
     {
         $code = $code ?? $this->code;
-        $len = \strlen($code);
+        $len = strlen($code);
         $mth_1 = $len / 10;
-        $mth_2 = \floor($mth_1) + 1;
-        $rand = \rand(3, 7);
+        $mth_2 = floor($mth_1) + 1;
+        $rand = rand(3, 7);
         $this->X_step_2_fakes = $rand;
         for ($i = 0; $i < $rand; $i++) {
-            $array[] = $this->Hs('codes_array') . " = " . $this->Hs('codes_array') . " ?? [];" . $this->Hs('codes_array') . "[] = bin2hex('" . \bin2hex($this->fake_hex($mth_2)) . "');";
+            $array[] = $this->Hs('codes_array') . " = " . $this->Hs('codes_array') . " ?? [];" . $this->Hs('codes_array') . "[] = bin2hex('" . bin2hex($this->fake_hex($mth_2)) . "');";
         }
         $array[] = "function " . $this->HS('fake_func', true) . "(" . $this->HS('fake_func_input') . "){return " . $this->HS('fake_func_input') . ";} function " . $this->Hs('eval_function', true) . "(" . $this->Hs('eval_function_str') . "){@eval(" . $this->Hs('eval_function_str') . ");return;}";
-        \preg_match_all("/(.{1,$mth_2})/", $code, $mtch);
+        preg_match_all("/(.{1,$mth_2})/", $code, $mtch);
         foreach ($mtch[0] as $item) {
-            $array[] = $this->Hs('codes_array') . " = " . $this->Hs('codes_array') . " ?? [];" . $this->Hs('codes_array') . "[] = bin2hex(\"" . \bin2hex($item) . "\");";
+            $array[] = $this->Hs('codes_array') . " = " . $this->Hs('codes_array') . " ?? [];" . $this->Hs('codes_array') . "[] = bin2hex(\"" . bin2hex($item) . "\");";
         }
         $code = '';
         $fx = true;
         foreach ($array as $item) {
             if (!isset($this->X_first_special_key)) {
-                $key = \rand(5, 30);
+                $key = rand(5, 30);
                 $this->X_first_special_key = $key;
                 $enc_key = $key;
             } else {
                 $enc_key = $this->next_key;
             }
 
-            $key = \rand(5, 30);
+            $key = rand(5, 30);
             $this->next_key = $key;
             $handler = $this->Hs('handler') . '->';
-            $fix = $item . $handler . $this->Hs('X_func_sp_key', true) . '(' . '0x' . \base_convert($this->next_key, 10, 16) . ');';
-            $fix = \bin2hex($fix);
+            $fix = $item . $handler . $this->Hs('X_func_sp_key', true) . '(' . '0x' . base_convert($this->next_key, 10, 16) . ');';
+            $fix = bin2hex($fix);
             $encoded = $this->tool_special($fix, $enc_key);
             if ($fx) {
                 $code .= "eval(" . $handler . $this->HS('X_func_sp', true) . "('" . $encoded . "'))";
@@ -168,29 +168,29 @@ class Encoder
             }
         }
         $run = $this->Hs('codes_str') . " = '';for(" .  $this->Hs('loop_1') . " = " . $this->X_step_2_fakes . ";" .  $this->Hs('loop_1') . " <= count( " . $this->Hs('codes_array') . ") - 1;" .  $this->Hs('loop_1') . "++){" . $this->Hs('codes_str') . " .= bin2hex(" . $this->Hs('codes_array') . "[" . $this->Hs('loop_1') . "]);}@eval(hex2bin(hex2bin(hex2bin(" . $this->Hs('codes_str') . "))));";
-        $full_fix = $this->tool_special(\bin2hex($run), $this->next_key);
+        $full_fix = $this->tool_special(bin2hex($run), $this->next_key);
         $code .= ";" . $this->HS('fake_func', true) . "(@eval(" . $handler . $this->HS('X_func_sp', true) . "('" . $full_fix . "')));__halt_compiler();";
 
-        $rand = \rand(10, 15);
+        $rand = rand(10, 15);
         $this->X_step_2_fakes = $rand;
         for ($i = 0; $i < $rand; $i++) {
-            $array[] = $this->Hs('codes_array') . " = " . $this->Hs('codes_array') . " ?? [];" . $this->Hs('codes_array') . "[] = bin2hex('" . \bin2hex($this->fake_hex($mth_2)) . "');";
+            $array[] = $this->Hs('codes_array') . " = " . $this->Hs('codes_array') . " ?? [];" . $this->Hs('codes_array') . "[] = bin2hex('" . bin2hex($this->fake_hex($mth_2)) . "');";
         }
         $fx = true;
         foreach ($array as $item) {
             if (!isset($this->X_first_special_key)) {
-                $key = \rand(5, 30);
+                $key = rand(5, 30);
                 $this->X_first_special_key = $key;
                 $enc_key = $key;
             } else {
                 $enc_key = $this->next_key;
             }
 
-            $key = \rand(5, 30);
+            $key = rand(5, 30);
             $this->next_key = $key;
             $handler = $this->Hs('handler') . '->';
-            $fix = $item . $handler . $this->Hs('X_func_sp_key', true) . '(' . '0x' . \base_convert($this->next_key, 10, 16) . ');';
-            $fix = \bin2hex($fix);
+            $fix = $item . $handler . $this->Hs('X_func_sp_key', true) . '(' . '0x' . base_convert($this->next_key, 10, 16) . ');';
+            $fix = bin2hex($fix);
             $encoded = $this->tool_special($fix, $enc_key);
             if ($fx) {
                 $code .= "eval(" . $handler . $this->HS('X_func_sp', true) . "('" . $encoded . "'))";
@@ -200,10 +200,10 @@ class Encoder
             }
         }
         $code .= ';';
-        $fake_1 = \rand(10000000000, 99999999999);
+        $fake_1 = rand(10000000000, 99999999999);
         $class = "class " . $this->Hs('class', true) . "{public function " . $this->Hs('X_func_sp_key', true) . "(" . $this->Hs('func_sp_key_string') . "){\$this->" . $this->Hs('func_sp_key_string_out', true) . " = " . $this->Hs('func_sp_key_string') . ";return \$this->" . $this->Hs('func_sp_key_string_out', true) . " + $fake_1;}public function " . $this->HS('X_func_sp', true) . "(" . $this->HS('func_sp_inp') . "){if (!isset(\$this->" . $this->Hs('func_sp_key_string_out', true) . " )) {" . $this->Hs('func_sp_key_now') . " = " . $this->X_first_special_key . ";}else{" . $this->Hs('func_sp_key_now') . " = \$this->" . $this->Hs('func_sp_key_string_out', true) . ";}preg_match_all('/(.)/', " . $this->HS('func_sp_inp') . ", " . $this->HS('func_sp_match') . ");" . $this->HS('func_sp_stout') . " = '';foreach (" . $this->HS('func_sp_match') . "[1] as " . $this->HS('func_sp_k') . "=>" . $this->HS('func_sp_value') . ") {" . $this->HS('func_sp_char') . " = ord(" . $this->HS('func_sp_value') . ") - " . $this->Hs('func_sp_key_now') . ";" . $this->HS('func_sp_stout') . " .= chr(" . $this->HS('func_sp_char') . ");}return hex2bin(" . $this->HS('func_sp_stout') . ");}}" . $this->Hs('handler') . ' = new ' . $this->Hs('class', true) . '();';
         for ($i = 1; $i <= 2; $i++) {
-            $r = \rand(1, 2);
+            $r = rand(1, 2);
             $class = ($r == 1) ? $this->hex180($class) : $this->hex196($class);
         }
         $code = $class . $code;
@@ -215,76 +215,76 @@ class Encoder
         $CODE = $code ?? $this->code;
         $CODE = "@eval(\"" . $this->tool_hx('gzinflate') . "\"('" . str_replace(["\\", "'"], ["\\\\", "\\'"], gzdeflate($CODE)) . "'));";
         $out = '@';
-        for ($i = 0; $i < \rand(15, 25); $i++) {
+        for ($i = 0; $i < rand(15, 25); $i++) {
             $l_code = "#Saeed Golestane :)\n#" . $this->HS(null, true, 200, 250);
-            for ($l = 0; $l < \rand(4, 7); $l++) {
-                $l_code = 'eval(gzuncompress(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'));';
+            for ($l = 0; $l < rand(4, 7); $l++) {
+                $l_code = 'eval(gzuncompress(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'));';
             }
-            $l_code = '@eval(hex2bin(\'' . \bin2hex($l_code) . '\'));';
-            $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'))^';
+            $l_code = '@eval(hex2bin(\'' . bin2hex($l_code) . '\'));';
+            $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'))^';
         }
         $X_KEY = rand(5, 35);
         $X_HIDE = '';
-        for ($i = 0; $i <= \strlen($CODE); $i++) {
-            $X_HIDE .= '' . \chr(\ord(\substr($CODE, $i, 1)) + $X_KEY);
+        for ($i = 0; $i <= strlen($CODE); $i++) {
+            $X_HIDE .= '' . chr(ord(substr($CODE, $i, 1)) + $X_KEY);
         }
-        $l_code = 'function ' . $this->HS('X_SPECIAL_FN', true) . '(' . $this->HS('input') . '){' . $this->HS('output') . ' = \'\';' . $this->HS('key') . ' = eval("' . $this->tool_hx('base64_decode') . '"(\'' . \base64_encode('return ' . $X_KEY . ';') . '\'));for(' . $this->HS('loop') . '=0;' . $this->HS('loop') . '<="' . $this->tool_hx('strlen') . '"(' . $this->HS('input') . ')-2;' . $this->HS('loop') . '++){' . $this->HS('output') . ' .= ("' . $this->tool_hx('chr') . '"("' . $this->tool_hx('ord') . '"("' . $this->tool_hx('substr') . '"(' . $this->HS('input') . ', ' . $this->HS('loop') . ', 1)) - ' . $this->HS('key') . '));}return ' . $this->HS('output') . ';}';
-        for ($l = 0; $l < \rand(4, 7); $l++) {
-            $l_code = 'eval(gzuncompress(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'));';
+        $l_code = 'function ' . $this->HS('X_SPECIAL_FN', true) . '(' . $this->HS('input') . '){' . $this->HS('output') . ' = \'\';' . $this->HS('key') . ' = eval("' . $this->tool_hx('base64_decode') . '"(\'' . base64_encode('return ' . $X_KEY . ';') . '\'));for(' . $this->HS('loop') . '=0;' . $this->HS('loop') . '<="' . $this->tool_hx('strlen') . '"(' . $this->HS('input') . ')-2;' . $this->HS('loop') . '++){' . $this->HS('output') . ' .= ("' . $this->tool_hx('chr') . '"("' . $this->tool_hx('ord') . '"("' . $this->tool_hx('substr') . '"(' . $this->HS('input') . ', ' . $this->HS('loop') . ', 1)) - ' . $this->HS('key') . '));}return ' . $this->HS('output') . ';}';
+        for ($l = 0; $l < rand(4, 7); $l++) {
+            $l_code = 'eval(gzuncompress(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'));';
         }
-        $l_code = '@eval(hex2bin(\'' . \bin2hex($l_code) . '\'));';
-        $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'))^';
-        for ($i = 0; $i < \rand(15, 25); $i++) {
+        $l_code = '@eval(hex2bin(\'' . bin2hex($l_code) . '\'));';
+        $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'))^';
+        for ($i = 0; $i < rand(15, 25); $i++) {
             $l_code = "#Saeed Golestane :)\n#" . $this->HS(null, true, 200, 250) . '';
-            for ($l = 0; $l < \rand(4, 7); $l++) {
-                $l_code = '@eval(gzuncompress(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'));';
+            for ($l = 0; $l < rand(4, 7); $l++) {
+                $l_code = '@eval(gzuncompress(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'));';
             }
-            $l_code = '@eval(hex2bin(\'' . \bin2hex($l_code) . '\'));';
-            $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'))^';
+            $l_code = '@eval(hex2bin(\'' . bin2hex($l_code) . '\'));';
+            $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'))^';
         }
         $l_code = $this->HS('Step3_Value_2') . '=' . $this->HS('Step3_Value') . ';';
-        for ($l = 0; $l < \rand(4, 7); $l++) {
-            $l_code = 'eval(gzuncompress(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'));';
+        for ($l = 0; $l < rand(4, 7); $l++) {
+            $l_code = 'eval(gzuncompress(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'));';
         }
-        $l_code = '@eval(hex2bin(\'' . \bin2hex($l_code) . '\'));';
-        $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'))^';
-        for ($i = 0; $i < \rand(15, 25); $i++) {
+        $l_code = '@eval(hex2bin(\'' . bin2hex($l_code) . '\'));';
+        $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'))^';
+        for ($i = 0; $i < rand(15, 25); $i++) {
             $l_code = "#Saeed Golestane :)\n#" . $this->HS(null, true, 200, 250) . '';
-            for ($l = 0; $l < \rand(4, 7); $l++) {
-                $l_code = '@eval(gzuncompress(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'));';
+            for ($l = 0; $l < rand(4, 7); $l++) {
+                $l_code = '@eval(gzuncompress(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'));';
             }
-            $l_code = '@eval(hex2bin(\'' . \bin2hex($l_code) . '\'));';
-            $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'))^';
+            $l_code = '@eval(hex2bin(\'' . bin2hex($l_code) . '\'));';
+            $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'))^';
         }
         $l_code = $this->HS('X_FN_EVAL') . ' = fn(' . $this->HS('en3_inp') . ') => @eval(' . $this->HS('en3_inp') . ');';
-        for ($l = 0; $l < \rand(4, 7); $l++) {
-            $l_code = 'eval(gzuncompress(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'));';
+        for ($l = 0; $l < rand(4, 7); $l++) {
+            $l_code = 'eval(gzuncompress(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'));';
         }
-        $l_code = '@eval(hex2bin(\'' . \bin2hex($l_code) . '\'));';
-        $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'))^';
-        for ($i = 0; $i < \rand(15, 25); $i++) {
+        $l_code = '@eval(hex2bin(\'' . bin2hex($l_code) . '\'));';
+        $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'))^';
+        for ($i = 0; $i < rand(15, 25); $i++) {
             $l_code = "#Saeed Golestane :)\n#" . $this->HS(null, true, 200, 250) . '';
-            for ($l = 0; $l < \rand(4, 7); $l++) {
-                $l_code = '@eval(gzuncompress(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'));';
+            for ($l = 0; $l < rand(4, 7); $l++) {
+                $l_code = '@eval(gzuncompress(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'));';
             }
-            $l_code = '@eval(hex2bin(\'' . \bin2hex($l_code) . '\'));';
-            $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'))^';
+            $l_code = '@eval(hex2bin(\'' . bin2hex($l_code) . '\'));';
+            $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'))^';
         }
         $l_code = '@eval(' . $this->HS('X_FN_EVAL') . '(' . $this->HS('X_SPECIAL_FN', true) . '(' . $this->HS('Step3_Value_2') . ')));';
-        for ($l = 0; $l < \rand(4, 7); $l++) {
-            $l_code = 'eval(gzuncompress(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'));';
+        for ($l = 0; $l < rand(4, 7); $l++) {
+            $l_code = 'eval(gzuncompress(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'));';
         }
-        $l_code = '@eval(hex2bin(\'' . \bin2hex($l_code) . '\'));';
-        $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'))^';
-        for ($i = 0; $i < \rand(15, 25); $i++) {
+        $l_code = '@eval(hex2bin(\'' . bin2hex($l_code) . '\'));';
+        $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'))^';
+        for ($i = 0; $i < rand(15, 25); $i++) {
             $l_code = "#Saeed Golestane :)\n#" . $this->HS(null, true, 200, 250) . '';
-            for ($l = 0; $l < \rand(4, 7); $l++) {
-                $l_code = '@eval(gzuncompress(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'));';
+            for ($l = 0; $l < rand(4, 7); $l++) {
+                $l_code = '@eval(gzuncompress(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'));';
             }
-            $l_code = '@eval(hex2bin(\'' . \bin2hex($l_code) . '\'));';
-            $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress($l_code)) . '\'))^';
+            $l_code = '@eval(hex2bin(\'' . bin2hex($l_code) . '\'));';
+            $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress($l_code)) . '\'))^';
         }
-        $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . \str_replace(["\\", "'"], ["\\\\", "\\'"], \gzcompress('# Saeed =D')) . '\'));';
+        $out .= 'eval("' . $this->tool_hx('gzuncompress') . '"(\'' . str_replace(["\\", "'"], ["\\\\", "\\'"], gzcompress('# Saeed =D')) . '\'));';
         $out = $this->HS('Step3_Value') . " = '" . str_replace(['\\', "'"], ['\\\\', "\\'"], $X_HIDE) . "';$out";
         $this->code = $out;
         return;
@@ -297,16 +297,16 @@ class Encoder
         $code = $this->beauty(bin2hex($code), $Tab, 100);
         $code = "\$PROGRAMMED_BY_SAEED = '\n$code\n';";
         $tool_letters = "\n\n" . $this->rand_enc($this->X_enc_lets, 2);
-        $tool_180 = $this->rand_enc('function ' . $this->HS('hex180', true) . '(' . $this->HS('hex180_inp') . '){' . $this->HS('hex180_x1') . '=0x' . \base_convert(108349932815, 10, 16) . ';' . $this->HS('hex180_x2') . '=0x' . \base_convert(2, 10, 16) . ';' . $this->HS('hex180_hx') . '=[\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'a\', \'b\', \'c\', \'d\', \'e\', \'f\',];' . $this->HS('hex180_x3') . '=' . $this->HS('hex180_hx') . '[5];' . $this->HS('hex180_x4') . ' = ' . $this->HS('hex180_x3') . '-' . $this->HS('hex180_x2') . '-' . $this->HS('hex180_x2') . ';' . $this->HS('hex180_key') . '=(' . $this->HS('hex180_x1') . '*' . $this->HS('hex180_x2') . '-' . $this->HS('hex180_x3') . ')**((' . $this->HS('hex180_x2') . '-' . $this->HS('hex180_x4') . ')/' . $this->HS('hex180_x3') . ')-' . $this->HS('hex180_x3') . ';' . $this->HS('hex180_ex') . '=[' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(1, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(2, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(3, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(4, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(5, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(6, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(7, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(8, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(9, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(10, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(11, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(12, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(13, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(14, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . \base_convert(15, 10, 16) . '),];' . $this->HS('hex180_hex') . '=' . $this->my_f('str_replace') . '(' . $this->HS('hex180_ex') . ', ' . $this->HS('hex180_hx') . ', ' . $this->HS('hex180_inp') . ');return ' . $this->my_f('hex2bin') . '(' . $this->HS('hex180_hex') . ');} ' . $this->HS('beauty_name_1') . ' = $PROGRAMMED_BY_SAEED;', 1, false);
-        $tool_196 = $this->hex180('function ' . $this->HS('hex196', true) . '(' . $this->HS('hex196_inp') . '){' . $this->HS('hex196_x1') . '=0x' . \base_convert(281950621879, 10, 16) . ';' . $this->HS('hex196_x2') . '=0x' . \base_convert(2, 10, 16) . ';' . $this->HS('hex196_hx') . '=[\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'a\', \'b\', \'c\', \'d\', \'e\', \'f\',];' . $this->HS('hex196_x3') . '=0x' . \base_convert(1, 10, 16) . ';' . $this->HS('hex196_x4') . '=0x' . \base_convert(5, 10, 16) . ';' . $this->HS('hex196_x5') . '= ' . $this->HS('hex196_x2') . '* ' . $this->HS('hex196_x2') . ';' . $this->HS('hex196_key') . '=(' . $this->HS('hex196_x1') . '-' . $this->HS('hex196_x5') . ')**(' . $this->HS('hex196_x3') . '/(' . $this->HS('hex196_x4') . '))+' . $this->HS('hex196_x3') . ';' . $this->HS('hex196_ex') . '=[' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(1, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(2, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(3, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(4, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(5, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(6, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(7, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(8, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(9, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(10, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(11, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(12, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(13, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(14, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . \base_convert(15, 10, 16) . '),];' . $this->HS('hex196_hex') . '=' . $this->my_f('str_replace') . '(' . $this->HS('hex196_ex') . ', ' . $this->HS('hex196_hx') . ', ' . $this->HS('hex196_inp') . ');return ' . $this->my_f('hex2bin') . '(' . $this->HS('hex196_hex') . ');} ' . $this->HS('beauty_name_2') . ' = ' . $this->HS('beauty_name_1') . ';');
+        $tool_180 = $this->rand_enc('function ' . $this->HS('hex180', true) . '(' . $this->HS('hex180_inp') . '){' . $this->HS('hex180_x1') . '=0x' . base_convert(108349932815, 10, 16) . ';' . $this->HS('hex180_x2') . '=0x' . base_convert(2, 10, 16) . ';' . $this->HS('hex180_hx') . '=[\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'a\', \'b\', \'c\', \'d\', \'e\', \'f\',];' . $this->HS('hex180_x3') . '=' . $this->HS('hex180_hx') . '[5];' . $this->HS('hex180_x4') . ' = ' . $this->HS('hex180_x3') . '-' . $this->HS('hex180_x2') . '-' . $this->HS('hex180_x2') . ';' . $this->HS('hex180_key') . '=(' . $this->HS('hex180_x1') . '*' . $this->HS('hex180_x2') . '-' . $this->HS('hex180_x3') . ')**((' . $this->HS('hex180_x2') . '-' . $this->HS('hex180_x4') . ')/' . $this->HS('hex180_x3') . ')-' . $this->HS('hex180_x3') . ';' . $this->HS('hex180_ex') . '=[' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(1, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(2, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(3, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(4, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(5, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(6, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(7, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(8, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(9, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(10, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(11, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(12, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(13, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(14, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex180_key') . ' + 0x' . base_convert(15, 10, 16) . '),];' . $this->HS('hex180_hex') . '=' . $this->my_f('str_replace') . '(' . $this->HS('hex180_ex') . ', ' . $this->HS('hex180_hx') . ', ' . $this->HS('hex180_inp') . ');return ' . $this->my_f('hex2bin') . '(' . $this->HS('hex180_hex') . ');} ' . $this->HS('beauty_name_1') . ' = $PROGRAMMED_BY_SAEED;', 1, false);
+        $tool_196 = $this->hex180('function ' . $this->HS('hex196', true) . '(' . $this->HS('hex196_inp') . '){' . $this->HS('hex196_x1') . '=0x' . base_convert(281950621879, 10, 16) . ';' . $this->HS('hex196_x2') . '=0x' . base_convert(2, 10, 16) . ';' . $this->HS('hex196_hx') . '=[\'0\', \'1\', \'2\', \'3\', \'4\', \'5\', \'6\', \'7\', \'8\', \'9\', \'a\', \'b\', \'c\', \'d\', \'e\', \'f\',];' . $this->HS('hex196_x3') . '=0x' . base_convert(1, 10, 16) . ';' . $this->HS('hex196_x4') . '=0x' . base_convert(5, 10, 16) . ';' . $this->HS('hex196_x5') . '= ' . $this->HS('hex196_x2') . '* ' . $this->HS('hex196_x2') . ';' . $this->HS('hex196_key') . '=(' . $this->HS('hex196_x1') . '-' . $this->HS('hex196_x5') . ')**(' . $this->HS('hex196_x3') . '/(' . $this->HS('hex196_x4') . '))+' . $this->HS('hex196_x3') . ';' . $this->HS('hex196_ex') . '=[' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(1, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(2, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(3, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(4, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(5, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(6, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(7, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(8, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(9, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(10, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(11, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(12, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(13, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(14, 10, 16) . '), ' . $this->my_f('chr') . '(' . $this->HS('hex196_key') . ' + 0x' . base_convert(15, 10, 16) . '),];' . $this->HS('hex196_hex') . '=' . $this->my_f('str_replace') . '(' . $this->HS('hex196_ex') . ', ' . $this->HS('hex196_hx') . ', ' . $this->HS('hex196_inp') . ');return ' . $this->my_f('hex2bin') . '(' . $this->HS('hex196_hex') . ');} ' . $this->HS('beauty_name_2') . ' = ' . $this->HS('beauty_name_1') . ';');
         $tool_unbeauty = $this->HS('start_explode') . '=explode("\n", ' . $this->HS('beauty_name_2') . ');unset(' . $this->HS('start_explode') . '[0]);unset(' . $this->HS('start_explode') . '[' . $this->my_f('count') . '(' . $this->HS('start_explode') . ')]);' . $this->HS('start_len') . ' = ' . $this->my_f('strlen') . '(' . $this->HS('start_explode') . '[1]);' . $this->HS('start_str') . ' = "";foreach (' . $this->HS('start_explode') . ' as ' . $this->HS('start_item') . ') {if (' . $this->my_f('strlen') . '(' . $this->HS('start_item') . ') == ' . $this->HS('start_len') . ') {' . $this->HS('start_str') . ' .= ' . $this->my_f('substr') . '(' . $this->HS('start_item') . ', 2, 50) . ' . $this->my_f('substr') . '(' . $this->HS('start_item') . ', 52 + 26, -2);} else {' . $this->HS('start_str') . ' .= ' . $this->my_f('substr') . '(' . $this->HS('start_item') . ', 2, -2);}}function ' . $this->HS('func_hex', true) . '(' . $this->HS('func_hex_inp') . '){' . $this->HS('func_hex_str') . ' = "";for (' . $this->HS('func_hex_loop') . ' = 0; ' . $this->HS('func_hex_loop') . ' < ' . $this->my_f('strlen') . '(' . $this->HS('func_hex_inp') . ') - 1; ' . $this->HS('func_hex_loop') . ' += 2) {' . $this->HS('func_hex_str') . ' .= ' . $this->my_f('chr') . '(' . $this->my_f('hexdec') . '(' . $this->HS('func_hex_inp') . '[' . $this->HS('func_hex_loop') . '] . ' . $this->HS('func_hex_inp') . '[' . $this->HS('func_hex_loop') . ' + 1]));}return ' . $this->HS('func_hex_str') . ';} ' . $this->HS('beauty_name_3') . ' = ' . $this->HS('func_hex', true) . '(' . $this->HS('start_str') . ');';
-        for ($i = 1; $i <= \rand(1, 2); $i++) {
-            $r = \rand(1, 2);
+        for ($i = 1; $i <= rand(1, 2); $i++) {
+            $r = rand(1, 2);
             $tool_unbeauty = ($r == 1) ? $this->hex180($tool_unbeauty) : $this->hex196($tool_unbeauty);
         }
         $eval = '@eval(' . $this->HS('beauty_name_3') . ');';
-        for ($i = 1; $i <= \rand(2, 3); $i++) {
-            $r = \rand(1, 2);
+        for ($i = 1; $i <= rand(2, 3); $i++) {
+            $r = rand(1, 2);
             $eval = ($r == 1) ? $this->hex180($eval) : $this->hex196($eval);
         }
         $code = $code  . $this->beauty_2($tool_letters . $tool_180 . $tool_196 . $tool_unbeauty . $eval);
@@ -340,10 +340,10 @@ class Encoder
     }
     public function tool_hx($str)
     {
-        \preg_match_all('/(.)/', $str, $mt);
+        preg_match_all('/(.)/', $str, $mt);
         $string = '';
         foreach ($mt[1] as $k => $let) {
-            $string .= '\\x' . \bin2hex($let);
+            $string .= '\\x' . bin2hex($let);
         }
         return $string;
     }
@@ -371,12 +371,12 @@ class Encoder
 
         if ($req == null) {
             $str = '';
-            for ($i = 1; $i <= \rand($min, $max); $i++) {
+            for ($i = 1; $i <= rand($min, $max); $i++) {
                 //$str .= chr($T[rand(0, count($T) - 1)]);
-                $str .= $T[\rand(0, \count($T) - 1)];
+                $str .= $T[rand(0, count($T) - 1)];
             }
-            $str = \preg_replace('/^(\_)*/', '', $str);
-            $str = ($sl) ? 'Saeed_' . $str : \preg_replace('/^(\d*)/', '', $str);
+            $str = preg_replace('/^(\_)*/', '', $str);
+            $str = ($sl) ? 'Saeed_' . $str : preg_replace('/^(\d*)/', '', $str);
             $str = ($is == false) ? '$' . $str : $str;
             return $str;
         } else {
@@ -384,12 +384,12 @@ class Encoder
                 return $this->HS_DB[$req];
             } else {
                 $str = '';
-                for ($i = 1; $i <= \rand($min, $max); $i++) {
+                for ($i = 1; $i <= rand($min, $max); $i++) {
                     //$str .= chr($T[rand(0, count($T) - 1)]);
-                    $str .= $T[\rand(0, \count($T) - 1)];
+                    $str .= $T[rand(0, count($T) - 1)];
                 }
-                $str = \preg_replace('/^(\_)*/', '', $str);
-                $str = ($sl) ? 'Saeed_' . $str : \preg_replace('/^(\d*)/', '', $str);
+                $str = preg_replace('/^(\_)*/', '', $str);
+                $str = ($sl) ? 'Saeed_' . $str : preg_replace('/^(\d*)/', '', $str);
                 $str = ($is == false) ? '$' . $str : $str;
                 $this->HS_DB[$req] = $str;
                 return $str;
@@ -403,31 +403,31 @@ class Encoder
         if (!isset($this->first_sp)) {
             $this->first_sp = $new;
         }
-        \preg_match_all('/(.)/', $str, $mt);
+        preg_match_all('/(.)/', $str, $mt);
         $string = '';
         foreach ($mt[1] as $k => $let) {
-            $char = \ord($let) + $num;
-            $string .= \chr($char);
+            $char = ord($let) + $num;
+            $string .= chr($char);
         }
-        return \str_replace("'", "\'", $string);
+        return str_replace("'", "\'", $string);
     }
     public function hex180($str)
     {
-        $str = \bin2hex($this->me . $str);
+        $str = bin2hex($this->me . $str);
         $hx = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',];
         $key = 180;
-        $ex = [\chr($key), \chr($key + 1), \chr($key + 2), \chr($key + 3), \chr($key + 4), \chr($key + 5), \chr($key + 6), \chr($key + 7), \chr($key + 8), \chr($key + 9), \chr($key + 10), \chr($key + 11), \chr($key + 12), \chr($key + 13), \chr($key + 14), \chr($key + 15),];
-        $str = \str_replace($hx, $ex, $str);
+        $ex = [chr($key), chr($key + 1), chr($key + 2), chr($key + 3), chr($key + 4), chr($key + 5), chr($key + 6), chr($key + 7), chr($key + 8), chr($key + 9), chr($key + 10), chr($key + 11), chr($key + 12), chr($key + 13), chr($key + 14), chr($key + 15),];
+        $str = str_replace($hx, $ex, $str);
         $str = '@eval(' . $this->HS('hex180', true) . '(\'' . $str . '\'));';
         return $str;
     }
     public function hex196($str)
     {
-        $str = \bin2hex($this->me . $str);
+        $str = bin2hex($this->me . $str);
         $hx = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',];
         $key = 196;
-        $ex = [\chr($key), \chr($key + 1), \chr($key + 2), \chr($key + 3), \chr($key + 4), \chr($key + 5), \chr($key + 6), \chr($key + 7), \chr($key + 8), \chr($key + 9), \chr($key + 10), \chr($key + 11), \chr($key + 12), \chr($key + 13), \chr($key + 14), \chr($key + 15),];
-        $str = \str_replace($hx, $ex, $str);
+        $ex = [chr($key), chr($key + 1), chr($key + 2), chr($key + 3), chr($key + 4), chr($key + 5), chr($key + 6), chr($key + 7), chr($key + 8), chr($key + 9), chr($key + 10), chr($key + 11), chr($key + 12), chr($key + 13), chr($key + 14), chr($key + 15),];
+        $str = str_replace($hx, $ex, $str);
         $str = '@eval(' . $this->HS('hex196', true) . '(\'' . $str . '\'));';
         return $str;
     }
@@ -435,7 +435,7 @@ class Encoder
     {
         $str = $this->hex($str, $is);
         for ($i = 1; $i <= $num; $i++) {
-            $rand = \rand(2, 3);
+            $rand = rand(2, 3);
             if ($rand == 1) {
                 $str = $this->uu($str, $is);
             } elseif ($rand == 2) {
@@ -456,7 +456,7 @@ class Encoder
         }
         $new = $this->HS();
         $dec = ($is) ? 'convert_uudecode' : $this->my_f('convert_uudecode');
-        $str = '@eval(' . $dec . '(' . $this->eod(\convert_uuencode($this->me . $str)) . '));';
+        $str = '@eval(' . $dec . '(' . $this->eod(convert_uuencode($this->me . $str)) . '));';
         $this->last_uu = $new;
         return $str;
     }
@@ -469,7 +469,7 @@ class Encoder
         }
         $new = $this->HS();
         $dec = ($is) ? 'hex2bin' : $this->my_f('hex2bin');
-        $str = '@eval(' . $dec . '(\'' . \bin2hex($this->me . $str) . '\'));';
+        $str = '@eval(' . $dec . '(\'' . bin2hex($this->me . $str) . '\'));';
         $this->last_hex = $new;
         return $str;
     }
@@ -482,7 +482,7 @@ class Encoder
         }
         $new = $this->HS();
         $dec = ($is) ? 'gzinflate' : $this->my_f('gzinflate');
-        $str = '@eval(' . $dec . '(\'' . \gzdeflate($this->me . $str) . '\'));';
+        $str = '@eval(' . $dec . '(\'' . gzdeflate($this->me . $str) . '\'));';
         $this->last_hex = $new;
         return $str;
     }
@@ -495,15 +495,15 @@ class Encoder
         }
         $new = $this->HS();
         $dec = ($is) ? 'base64_decode' : $this->my_f('base64_decode');
-        $str = '@eval(' . $dec . '(\'' . \base64_encode($this->me . $str) . '\'));';
+        $str = '@eval(' . $dec . '(\'' . base64_encode($this->me . $str) . '\'));';
         $this->last_hex = $new;
         return $str;
     }
     public function eod($str)
     {
-        $ln = \strlen($str);
+        $ln = strlen($str);
         $EOD = $this->HS(null, true, 30, 50, false);
-        $str = \str_replace('$', '\\$', $str);
+        $str = str_replace('$', '\\$', $str);
         return '<<<' . "$EOD\n$str\n$EOD";
     }
     private function fake_hex($len)
@@ -511,20 +511,20 @@ class Encoder
         $hx = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f',];
         $str = '';
         for ($i = 0; $i < $len; $i++) {
-            $str .= $hx[\rand(0, \count($hx) - 1)];
+            $str .= $hx[rand(0, count($hx) - 1)];
         }
         return $str;
     }
     public function beauty($str, $tab, $num)
     {
-        $str = \str_replace('\'', '\\\'', $str);
-        \preg_match_all("/(.{1,$num})/", $str, $ar);
+        $str = str_replace('\'', '\\\'', $str);
+        preg_match_all("/(.{1,$num})/", $str, $ar);
         $ex = '';
-        $x = \count($ar[0]) - 1;
+        $x = count($ar[0]) - 1;
         foreach ($ar[0] as $k => $item) {
-            $len = \strlen($item);
+            $len = strlen($item);
             if ($k !== $x) {
-                $ex .= '| ' . \substr($item, 0, $len / 2) . $tab . \substr($item, $len / 2, $len) . " |\n";
+                $ex .= '| ' . substr($item, 0, $len / 2) . $tab . substr($item, $len / 2, $len) . " |\n";
             } else {
                 $ex .= '| ' . $item . ' |';
                 break;

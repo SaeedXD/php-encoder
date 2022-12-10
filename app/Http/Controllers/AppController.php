@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Link;
 use Illuminate\Http\Request;
 use App\Models\Pack;
-use App\Services\Encoder;
+use App\Classes\Encoder;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
