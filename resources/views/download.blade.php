@@ -10,6 +10,6 @@
         <script src='/assets/scripts/awesome.min.js' crossorigin='anonymous'></script>
     </head>
     <body id="app" class="flex items-center flex-col gap-7 py-7 text-white/90">
-        <App />
+        <downloadPage linkdata='@json($data)' />
     </body>
 </html>

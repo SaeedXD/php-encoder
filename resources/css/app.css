@@ -3,17 +3,49 @@
 @tailwind utilities;
 
 * {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
     transition: all 0.3s;
 }
 
+::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-track {
+    background: #555;
+    border-radius: 50%;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 50%;
+}
+
 #app {
-    background: linear-gradient(20deg, #000c25, #003a66);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23cccccc' fill-opacity='0.35' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"),
+        linear-gradient(45deg, #000311, #00143f, #000311);
     min-height: 100vh;
 }
 
 .box {
-    background: linear-gradient(to top, #00000055, #00000011);
-    backdrop-filter: blur(2px);
+    background: linear-gradient(45deg, #00000077, #00000033, #00000077);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 10px 20px 0px #000000;
+    border: 1px solid #ffffff33;
 }
 
 .custom-animate-pulse {
@@ -21,13 +53,21 @@
 }
 
 @keyframes custom-animate-pulse {
-    0%{
+    0% {
         opacity: 1;
     }
-    40%{
+
+    40% {
         opacity: 0;
     }
-    100%{
+
+    100% {
         opacity: 1;
     }
+}
+
+td,
+td * {
+    word-break: keep-all;
+    white-space: nowrap;
 }

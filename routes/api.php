@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AppController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/register', [AppController::class, 'registerPack']);
+Route::post('/upload/{token}', [AppController::class, 'uploadToPack']);
+Route::get('/newlink/{token}', [AppController::class, 'createDownloadLinkForPack']);
+Route::get('/download/{token}', [AppController::class, 'downloadLink']);

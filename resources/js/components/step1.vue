@@ -1,15 +1,20 @@
 <template>
-    <ul class="list-disc w-full text-lg">
-        <li v-for="description in descriptions">{{ description }}</li>
-    </ul>
+    <div class="w-full">
+        <h2 class="w-full flex items-center justify-center border-b border-white/10 pb-5 mb-5 font-extrabold text-xl">
+            {{ title }}
+        </h2>
+        <ul class="relative font-mono list-disc w-full text-lg">
+            <li class="mx-5 md:mx-10" v-for="description in descriptions">{{ description }}</li>
+        </ul>
+    </div>
 </template>
 
 <script>
 export default {
     data() {
         return {
-            message:"About This System",
-            descriptions : [
+            title: "About This System",
+            descriptions: [
                 "This is a free service to make your php scripts uneditable.",
                 "All PHP encoder and obfuscator may be decoded, but the difference is in their level of difficulty.",
                 "Our service protects your scripts to a good extent.",
@@ -18,10 +23,5 @@ export default {
             ]
         }
     },
-
-    mounted()
-    {
-        this.$emit('message', this.message);
-    }
 }
 </script>

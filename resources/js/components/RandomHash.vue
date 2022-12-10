@@ -43,10 +43,7 @@ export default {
                 setTimeout(this.addLetter, timeline);
             }
             timeline += rand(800, 2500);
-            // for (let i = 1; i <= this.size; i++) {
-            //     timeline += rand(50, 100);
-            //     setTimeout(this.delLetter, timeline);
-            // }
+
             setTimeout(()=>{
                 this.$refs.hash.style.opacity = 0;
             }, timeline);
@@ -54,7 +51,7 @@ export default {
         },
 
         finished() {
-            this.$emit('finished', this.$el);
+            this.$el.remove();
         }
 
     },
